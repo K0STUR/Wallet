@@ -12,7 +12,7 @@ import pl.edu.wszib.wallet.model.User;
 import javax.persistence.NoResultException;
 
 @Repository
-public class UserDaoImpl implements IUserDao {
+public class UserDAOImpl implements IUserDao {
     @Autowired
     SessionFactory sessionFactory;
 

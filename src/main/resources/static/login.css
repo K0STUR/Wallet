@@ -1,3 +1,4 @@
+body {background-color: #173F5F;}
 #login-form {
     width: 800px;
     margin: 70px auto;
@@ -19,9 +20,10 @@
     text-align: center;
 }
 #login-form input[type="submit"] {
+    display: inline-block;
+    position: right;
     width: 200px;
     margin: 10px auto;
-    display: block;
     font-size: 26px;
     border: 2px solid black;
     color: black;
@@ -32,5 +34,23 @@
 }
 #login-form input[type="submit"]:hover {
     color: white;
-    background-color: black;
+    background-color: pink;
+}
+.button {
+    display: inline-block;
+    text-align:center;
+    width: 200px;
+    margin: 10px auto;
+    font-size: 26px;
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.5s, background-color 0.5s;
+    text-decoration: none;
+}
+.button:hover {
+color: white;
+    background-color: pink;
 }

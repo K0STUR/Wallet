@@ -16,9 +16,6 @@ public class Expense {
     private Category category;
 
 
-    public Expense() {
-    }
-
     public Expense(int id, String name, double value, Date date, Category category) {
         this.id = id;
         this.name = name;

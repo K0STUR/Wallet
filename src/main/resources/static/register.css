@@ -1,3 +1,5 @@
+body {background-color: #173F5F;}
+
 #register-form {
     width: 800px;
     margin: 70px auto;
@@ -21,7 +23,7 @@
 #register-form input[type="submit"] {
     width: 200px;
     margin: 10px auto;
-    display: block;
+    display: inline-block;
     font-size: 26px;
     border: 2px solid black;
     color: black;
@@ -39,5 +41,24 @@
     font-size: 26px;
     text-align: center;
 }
+a.button {
+    display: inline-block;
+    text-align:center;
+    width: 200px;
+    margin: 10px auto;
+    font-size: 26px;
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.5s, background-color 0.5s;
+    text-decoration: none;
+}
+a.button:hover {
+color: white;
+    background-color: black;
+}
+
 
 
