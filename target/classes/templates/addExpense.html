@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wallet</title>
+    <link rel="stylesheet" href="/addExpense.css">
+    <link rel="stylesheet" href="/commons.css">
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+
+<div id="content">
+    <form method="post" id="edit-form">
+        <p th:if="${info}" th:text="${info}" id="error"></p>
+         <input type="text" placeholder="Nazwa wydatku" th:field="*{expanse.name}">
+         <input type="text" placeholder="Wartość wydatku" th:field="*{expanse.value}">
+         <input type="text" placeholder="Data" th:field="*{expanse.date}">
+         <input type="text" placeholder="Kategoria" th:field="*{expanse.category}">
+         <input type="submit" value="Dodaj">
+    </form>
+</div>
+
+</body>
+</html>
