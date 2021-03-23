@@ -1,0 +1,21 @@
+#logo {
+    width: 800px;
+    margin: 0 auto;
+    display: block;
+}
+#menu {
+    margin: 40px 0 0 0;
+    text-align: center;
+    border: 2px solid black;
+}
+.menu-button {
+    font-size: 26px;
+    text-decoration: none;
+    color: black;
+    margin: 5px 25px;
+    transition: color 1s;
+}
+
+.menu-button:hover {
+    color: blue;
+}
