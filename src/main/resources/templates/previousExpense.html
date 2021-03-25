@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Wallet</title>
+<title>Wallet</title>
+<link rel="stylesheet" href="/previousExpense.css">
+<link rel="stylesheet" href="/commons.css">
 </head>
 <body>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+
+
+<select id="select">
+    <option th:each="month : ${months}"
+            th:value="${month}"
+            th:text="${month}"></option>
+</select>
+
 
 </body>
 </html>

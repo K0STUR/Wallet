@@ -1,1 +1,21 @@
 body {background-color: #173F5F;}
+
+.expense-box {
+    width: 80%;
+    margin: 15px auto;
+    border: 2px solid black;
+}
+.title-box {
+    font-size: 30px;
+    padding: 5px;
+}
+.value-box {
+    font-size: 30px;
+    float: right;
+    padding: 3px;
+}
+.product-data-box {
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 50px;
+}

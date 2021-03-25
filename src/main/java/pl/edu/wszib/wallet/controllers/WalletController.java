@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.edu.wszib.wallet.model.Expense;
 import pl.edu.wszib.wallet.model.view.ExpenseModel;
+import pl.edu.wszib.wallet.model.view.MonthsModel;
 import pl.edu.wszib.wallet.services.IExpenseService;
 import pl.edu.wszib.wallet.session.SessionObject;
 
@@ -35,9 +36,21 @@ public class WalletController {
         if(!this.sessionObject.isLogged()){
             return "redirect:/login";
         }
-       // expense.setUser(this.sessionObject.getLoggedUser());
+
         this.expenseService.addNewExpense(expenseModel);
         return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/previousExpense", method = RequestMethod.GET)
+    public String previosExpenseForm(Model model){
+        if (!this.sessionObject.isLogged()) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("months", new MonthsModel().getMonthsToList());
+
+        return "/previousExpense";
+
     }
 
 }
