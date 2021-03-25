@@ -23,7 +23,7 @@ body {background-color: #173F5F;}
 #register-form input[type="submit"] {
     width: 200px;
     margin: 10px auto;
-    display: inline-block;
+    display: block;
     font-size: 26px;
     border: 2px solid black;
     color: black;
@@ -42,7 +42,7 @@ body {background-color: #173F5F;}
     text-align: center;
 }
 a.button {
-    display: inline-block;
+    display: block;
     text-align:center;
     width: 200px;
     margin: 10px auto;

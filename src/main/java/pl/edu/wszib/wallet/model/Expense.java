@@ -3,10 +3,10 @@ package pl.edu.wszib.wallet.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name= "texpense")
+@Entity(name = "texpense")
 public class Expense {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double value;
@@ -15,14 +15,21 @@ public class Expense {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
-    public Expense(int id, String name, double value, Date date, Category category) {
+    public Expense() {
+    }
+
+    public Expense(int id, String name, double value, Date date, Category category, User user) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.date = date;
         this.category = category;
+        this.user = user;
     }
+
 
     public int getId() {
         return id;
@@ -62,6 +69,14 @@ public class Expense {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public enum Category {
