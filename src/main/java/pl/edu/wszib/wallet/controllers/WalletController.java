@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.edu.wszib.wallet.model.Expense;
+import pl.edu.wszib.wallet.model.view.ExpenseModel;
 import pl.edu.wszib.wallet.services.IExpenseService;
 import pl.edu.wszib.wallet.session.SessionObject;
 
@@ -26,16 +27,16 @@ public class WalletController {
         if(!this.sessionObject.isLogged()){
             return "redirect:/login";
         }
-        model.addAttribute("expense",new Expense());
+        model.addAttribute("expense",new ExpenseModel());
         return "addExpense";
     }
     @RequestMapping(value = "/addExpense", method = RequestMethod.POST)
-    public String addExpense(@ModelAttribute Expense expense){
+    public String addExpense(@ModelAttribute ExpenseModel expenseModel){
         if(!this.sessionObject.isLogged()){
             return "redirect:/login";
         }
        // expense.setUser(this.sessionObject.getLoggedUser());
-        this.expenseService.addNewExpense(expense);
+        this.expenseService.addNewExpense(expenseModel);
         return "redirect:/main";
     }
 

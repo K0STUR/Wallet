@@ -3,10 +3,13 @@ package pl.edu.wszib.wallet.dao.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.edu.wszib.wallet.dao.IExpenseDAO;
 import pl.edu.wszib.wallet.model.Expense;
+
+import java.util.List;
 
 @Repository
 public class ExpenseDAOImpl implements IExpenseDAO {
@@ -33,4 +36,16 @@ public class ExpenseDAOImpl implements IExpenseDAO {
         }
 
     }
+
+    @Override
+    public List<Expense> getExpensesByUserId(int id) {
+        Session session = sessionFactory.openSession();
+        Query<Expense> query = session.createQuery("FROM pl.edu.wszib.wallet.model.Expense WHERE user.id = :id");
+        query.setParameter("id", id);
+        List<Expense> expenseList = query.getResultList();
+        session.close();
+        return expenseList;
+
+    }
+
 }

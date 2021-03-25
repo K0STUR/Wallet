@@ -9,6 +9,16 @@
 <body>
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
+<div id="content">
+    <th:block th:each="expense : ${expenses}">
+        <div class="book-box">
+            <div th:text="${expense.name}" class="title-box"></div>
+            <div th:text="${expense.value}" class="author-box"></div>
+            <div th:text="${expense.category}" class="isbn-box"></div>
+            <div th:text="${expense.date}" class="isbn-box"></div>
+        </div>
+    </th:block>
+</div>
 
 </body>
 </html>
