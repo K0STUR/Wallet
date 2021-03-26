@@ -11,6 +11,8 @@ import pl.edu.wszib.wallet.session.SessionObject;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +46,69 @@ public class ExpenseServiceImpl implements IExpenseService {
     @Override
     public List<Expense> getUserExpenses() {
         return this.expenseDAO.getExpensesByUserId(this.sessionObject.getLoggedUser().getId());
+    }
+
+    @Override
+    public Double getSumExpensesFromMonth(String month) {
+        List<Expense> expenses = new ArrayList<>();
+
+        Double sum =0.0;
+
+        Date date = new Date();
+
+        expenses = this.expenseDAO.getExpensesByUserId(this.sessionObject.getLoggedUser().getId());
+
+        switch (month){
+            case "Styczen":
+                date.setMonth(Calendar.JANUARY);
+                break;
+            case "Luty":
+                date.setMonth(Calendar.FEBRUARY);
+                break;
+            case "Marzec":
+                date.setMonth(Calendar.MARCH);
+                break;
+            case "Kwiecien":
+                date.setMonth(Calendar.APRIL);
+                break;
+            case "Maj":
+                date.setMonth(Calendar.MAY);
+                break;
+            case "Czerwiec":
+                date.setMonth(Calendar.JUNE);
+                break;
+            case "Lipiec":
+                date.setMonth(Calendar.JULY);
+                break;
+            case "Sierpien":
+                date.setMonth(Calendar.AUGUST);;
+                break;
+            case "Wrzesien":
+                date.setMonth(Calendar.SEPTEMBER);
+                break;
+            case "Pazdiernik":
+                date.setMonth(Calendar.OCTOBER);
+                break;
+            case "Listopad":
+                date.setMonth(Calendar.NOVEMBER);
+                break;
+            case "Grudzien":
+                date.setMonth(Calendar.DECEMBER);
+                break;
+            default:
+                break;
+        }
+
+        for (Expense expense : expenses) {
+            if(expense.getDate().getMonth()==date.getMonth()) {
+                sum+=expense.getValue();
+
+            }
+        }
+
+        return sum;
+
+
     }
 
 }

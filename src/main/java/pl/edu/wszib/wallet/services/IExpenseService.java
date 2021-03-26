@@ -8,4 +8,5 @@ import java.util.List;
 public interface IExpenseService {
     void addNewExpense (ExpenseModel expenseModel);
     List<Expense> getUserExpenses();
+    Double getSumExpensesFromMonth(String month);
 }

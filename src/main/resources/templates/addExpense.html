@@ -12,10 +12,18 @@
 
 <div id="content">
     <form method="post" id="edit-form">
-         <input type="text" placeholder="Nazwa wydatku" th:field="*{expense.name}">
-         <input type="text" placeholder="Wartość wydatku" th:field="*{expense.value}">
-         <input type="text" placeholder="Kategoria" th:field="*{expense.category}">
-         <input type="submit" value="Dodaj">
+        <input type="text" placeholder="Nazwa wydatku" th:field="*{expense.name}">
+        <input type="text" placeholder="Wartość wydatku" th:field="*{expense.value}">
+
+        <form  method="post">
+            <select th:field="*{expense.category}">
+                <option th:each="category : ${expenseCategory}"
+                        th:value="${category}"
+                        th:text="${category}"></option>
+            </select>
+            <input type="submit" value="Wybierz">
+        </form>
+
     </form>
 </div>
 

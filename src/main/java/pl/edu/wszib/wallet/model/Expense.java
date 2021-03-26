@@ -1,6 +1,7 @@
 package pl.edu.wszib.wallet.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity(name = "texpense")
@@ -87,5 +88,10 @@ public class Expense {
         Wakacje,
         Zachcianki,
         Inne
+    }
+
+
+    public String[] getNames(Class<? extends Enum<?>> e) {
+        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 }

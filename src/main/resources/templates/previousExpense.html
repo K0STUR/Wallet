@@ -2,20 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-<title>Wallet</title>
-<link rel="stylesheet" href="/previousExpense.css">
-<link rel="stylesheet" href="/commons.css">
+    <title>Wallet</title>
+    <link rel="stylesheet" href="/previousExpense.css">
+    <link rel="stylesheet" href="/commons.css">
 </head>
 <body>
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
 
 
-<select id="select">
-    <option th:each="month : ${months}"
-            th:value="${month}"
-            th:text="${month}"></option>
-</select>
+
+<form  method="post">
+    <select th:field="*{monthModel.month}">
+        <option th:each="month : ${months}"
+                th:value="${month}"
+                th:text="${month}"></option>
+    </select>
+    <input type="submit" value="Wybierz">
+</form>
+
+<div th:method="post" class="expense-box">
+    <div th:text="${expense}" class="sum-price"></div>
+    <div th:text="'&nbspSuma wydatków za: ' + ${monthModel.month}" class="month"></div>
+</div>
+
 
 
 </body>
