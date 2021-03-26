@@ -33,7 +33,7 @@ public class UserDAOImpl implements IUserDao {
     }
 
     @Override
-    public boolean AddNewUser(User user) {
+    public boolean addNewUser(User user) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{

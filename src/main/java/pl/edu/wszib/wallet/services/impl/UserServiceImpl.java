@@ -15,11 +15,11 @@ public class UserServiceImpl implements IUserService {
     @Resource
     SessionObject sessionObject;
     @Autowired
-    IUserDao UserDao;
+    IUserDao userDao;
 
     @Override
     public void authenticate(User user) {
-        User userFromDataBase = this.UserDao.getUserByLogin(user.getLogin());
+        User userFromDataBase = this.userDao.getUserByLogin(user.getLogin());
         if(userFromDataBase == null){
             return;
         }
@@ -35,10 +35,10 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean addNewUser(RegistrationModel registrationModel) {
-        if(this.UserDao.getUserByLogin(registrationModel.getLogin())!=null){
+        if(this.userDao.getUserByLogin(registrationModel.getLogin())!=null){
             return false;
         }
         User newUser = new User(0, registrationModel.getLogin(), registrationModel.getPass());
-        return this.UserDao.AddNewUser(newUser);
+        return this.userDao.addNewUser(newUser);
     }
 }

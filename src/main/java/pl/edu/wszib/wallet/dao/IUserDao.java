@@ -4,5 +4,5 @@ import pl.edu.wszib.wallet.model.User;
 
 public interface IUserDao {
     User getUserByLogin(String login);
-    boolean AddNewUser(User user);
+    boolean addNewUser(User user);
 }

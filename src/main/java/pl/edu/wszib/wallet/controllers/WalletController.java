@@ -13,7 +13,7 @@ import pl.edu.wszib.wallet.services.IExpenseService;
 import pl.edu.wszib.wallet.session.SessionObject;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
+
 
 @Controller
 public class WalletController {
@@ -34,7 +34,7 @@ public class WalletController {
 
         String [] category = new Expense().getNames(Expense.Category.class);
 
-
+        model.addAttribute("isLogged",this.sessionObject.isLogged());
         model.addAttribute("expenseCategory", category);
         model.addAttribute("expense", new ExpenseModel());
         return "addExpense";
@@ -55,7 +55,7 @@ public class WalletController {
             return "redirect:/login";
         }
 
-
+        model.addAttribute("isLogged",this.sessionObject.isLogged());
         model.addAttribute("monthModel", new MonthModel());
         model.addAttribute("months", months);
 
@@ -71,7 +71,7 @@ public class WalletController {
             return "redirect:/login";
         }
 
-
+        model.addAttribute("isLogged",this.sessionObject.isLogged());
         model.addAttribute("months", months);
         model.addAttribute("expense", this.expenseService.getSumExpensesFromMonth(monthModel.getMonth()));
         model.addAttribute("categoryValue", this.expenseService.getPercentValueOfCategories(monthModel.getMonth()));
