@@ -9,12 +9,11 @@ import pl.edu.wszib.wallet.services.IExpenseService;
 import pl.edu.wszib.wallet.session.SessionObject;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ExpenseServiceImpl implements IExpenseService {
@@ -49,16 +48,16 @@ public class ExpenseServiceImpl implements IExpenseService {
     }
 
     @Override
-    public Double getSumExpensesFromMonth(String month) {
+    public List<Expense> getExpensesFromMonth(String month) {
         List<Expense> expenses = new ArrayList<>();
 
-        Double sum =0.0;
+        List<Expense> expensesFromMonth = new ArrayList<>();
 
         Date date = new Date();
 
         expenses = this.expenseDAO.getExpensesByUserId(this.sessionObject.getLoggedUser().getId());
 
-        switch (month){
+        switch (month) {
             case "Styczen":
                 date.setMonth(Calendar.JANUARY);
                 break;
@@ -81,7 +80,8 @@ public class ExpenseServiceImpl implements IExpenseService {
                 date.setMonth(Calendar.JULY);
                 break;
             case "Sierpien":
-                date.setMonth(Calendar.AUGUST);;
+                date.setMonth(Calendar.AUGUST);
+                ;
                 break;
             case "Wrzesien":
                 date.setMonth(Calendar.SEPTEMBER);
@@ -100,10 +100,26 @@ public class ExpenseServiceImpl implements IExpenseService {
         }
 
         for (Expense expense : expenses) {
-            if(expense.getDate().getMonth()==date.getMonth()) {
-                sum+=expense.getValue();
+            if (expense.getDate().getMonth() == date.getMonth()) {
+                expensesFromMonth.add(expense);
 
             }
+        }
+
+        return expensesFromMonth;
+
+
+    }
+
+    @Override
+    public Double getSumExpensesFromMonth(String month) {
+        List<Expense> expenses = getExpensesFromMonth(month);
+
+
+        Double sum = 0.0;
+
+        for (Expense expense : expenses) {
+            sum += expense.getValue();
         }
 
         return sum;
@@ -111,4 +127,51 @@ public class ExpenseServiceImpl implements IExpenseService {
 
     }
 
+    @Override
+    public Map<String, Double> getPercentValueOfCategories(String month) {
+        Map<String, Double> categoriesValue = new LinkedHashMap<>();
+
+        List<Expense> expenses = getExpensesFromMonth(month);
+        Double sum = getSumExpensesFromMonth(month);
+
+
+
+        String[] category = new Expense().getNames(Expense.Category.class);
+
+        if(expenses.isEmpty()) {
+            for(int i=0; i<category.length;i++) {
+                categoriesValue.put(category[i], 0.0);
+            }
+            return categoriesValue;
+        }
+
+
+        for (int i = 0; i < category.length; i++) {
+            Double categoryPercent = 0.0;
+            categoryPercent += getSumCategory(category[i], expenses);
+            Double value = BigDecimal.valueOf(categoryPercent*100/sum).setScale(2, RoundingMode.UP).doubleValue();
+            categoriesValue.put(category[i], value);
+            //categoriesValue.put(category[i],(categoryPercent*100)/sum);
+        }
+
+        return categoriesValue;
+
+
+    }
+
+
+    private Double getSumCategory(String category, List<Expense> expenses) {
+
+        Double sum = 0.0;
+
+        for (Expense expense : expenses) {
+            if (expense.getCategory().toString().equals(category)) {
+                sum += expense.getValue();
+            }
+        }
+
+
+        return sum;
+
+    }
 }

@@ -74,6 +74,7 @@ public class WalletController {
 
         model.addAttribute("months", months);
         model.addAttribute("expense", this.expenseService.getSumExpensesFromMonth(monthModel.getMonth()));
+        model.addAttribute("categoryValue", this.expenseService.getPercentValueOfCategories(monthModel.getMonth()));
 
 
         return "/previousExpense";

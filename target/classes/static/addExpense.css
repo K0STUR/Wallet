@@ -1,1 +1,7 @@
-body {background-color: #173F5F;}
+.list{
+ position: fixed;
+ left: 50%;
+ margin-left: -260px;
+ margin-top: +8px;
+
+}

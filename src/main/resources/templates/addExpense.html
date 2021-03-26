@@ -10,7 +10,7 @@
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
 
-<div id="content">
+<div class="list">
     <form method="post" id="edit-form">
         <input type="text" placeholder="Nazwa wydatku" th:field="*{expense.name}">
         <input type="text" placeholder="Wartość wydatku" th:field="*{expense.value}">

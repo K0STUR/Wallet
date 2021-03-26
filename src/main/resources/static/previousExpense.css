@@ -1,10 +1,22 @@
 .expense-box {
-    width: 80%;
+    width: 30%;
     margin: 15px auto;
     border: 2px solid black;
-
+    margin-top: +40px;
 }
 .sum-price{
- float: right;
+ text-align: center;
  padding: 5px;
+ margin-top: -0px;
  }
+
+.list-box{
+ position: absolute;
+ left: 50%;
+ margin-left: -78px;
+ margin-top: +9px;
+}
+
+.value-box{
+text-align: center;
+}

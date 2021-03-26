@@ -12,7 +12,7 @@
 
 
 
-<form  method="post">
+<form  method="post" class="list-box">
     <select th:field="*{monthModel.month}">
         <option th:each="month : ${months}"
                 th:value="${month}"
@@ -22,8 +22,17 @@
 </form>
 
 <div th:method="post" class="expense-box">
-    <div th:text="${expense}" class="sum-price"></div>
-    <div th:text="'&nbspSuma wydatków za: ' + ${monthModel.month}" class="month"></div>
+    <div th:text="'&nbspSuma wydatków za: ' + ${monthModel.month} +' = '+ ${expense} + ' PLN'" class="sum-price"></div>
+<!--    <div th:text="${expense} + ' PLN'" class="sum-price"></div>-->
+
+    <th:block th:each="category : ${categoryValue}">
+        <div class="expense-box">
+            <div th:text="${category.key} +' = '+ ${category.value}+'%'" class="value-box"></div>
+<!--            <div th:text="${category.key}" class="category-box"></div>-->
+
+
+        </div>
+    </th:block>
 </div>
 
 
